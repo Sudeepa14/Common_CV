@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% if post_list %}
+<h1 class="card-title col-md-3 offset-4">Search Results</h1>
+    <ul>
+    {% for post in post_list %}
+         <!-- "Title"= {{ post.title}} [{{ post.body}} , Score ={{ post.score}},, View Count ={{ post.viewCount}}] 
+         {{ post.body}} -->
+         <div class="col-md-10 offset-1">
+         <div class="card">
+            <div class="card-body" style="background-color: rgba(0, 172, 238, 0.2);">
+                <h1 class="card-title">{{post.id}} {% if post.title %} - {{ post.title}} {% endif %}</h1>
+                <h5 >{% if post.owneruserid %} Added By User - {{post.owneruserid}} {% endif %} {% if post.creationdate %} on {{ post.creationdate}} {% endif %}  {% if post.parentid %} Parent Id - {{ post.parentid}}  {% endif %} </h5>
+              
+                <h5> Score - {{ post.score}}    Views- {{post.viewcount}} {% if post.commentcount %} , Comments Count- {{ post.commentcount}} {% endif %} {% if post.answercount %} , Anzwer Count - {{ post.answercount}} {% endif %}  {% if post.favoritecount %} , Favorite Count - {{ post.favoritecount}}  {% endif%} </h5>
+                <h5>  {% if post.lasteditdate %} Last Edited On - {{ post.lasteditdate}} {% endif %} {% if post.lasteditoruserid %} , by user {{ post.lasteditoruserid}} {% endif %}  {% if post.closeddate %} , ClosedDate - {{ post.closeddate}} {% endif %}</h5>
+                <h5>  {% if post.tags %} Tags - {{ post.tags}}  {% endif %} </h5>
+
+                <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; /* number of lines to show */  -webkit-box-orient: vertical;">{{ post.body }}</p> 
+                <!-- |safe -->
+              <!-- <a href="#11070" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+        </div>
+        <br/>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
